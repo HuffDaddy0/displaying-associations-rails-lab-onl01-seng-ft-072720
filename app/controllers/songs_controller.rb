@@ -1,8 +1,10 @@
 class SongsController < ApplicationController
   def index
+    @songs = Song.all
   end
 
   def show
+    @song = Song.find_by(id: params[:id])
   end
 
   def new
@@ -42,8 +44,10 @@ class SongsController < ApplicationController
     flash[:notice] = "Song deleted."
     redirect_to songs_path
   end
-
+  
+  
   private
+
 
   def song_params
     params.require(:song).permit(:title)
